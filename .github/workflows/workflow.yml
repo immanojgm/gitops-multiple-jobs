@@ -1,0 +1,36 @@
+name: workflow for multiple jobs
+on: push
+
+jobs:
+    first_job:
+        runs-on: ubuntu-latest
+        steps: 
+            - name: first step in first_job
+              run: |
+                echo "hello world"
+                echo "wellcome to multiple job workflow"
+            
+            - name: second step in first_job
+              run: |
+                echo "it  is another step in first_job"
+                echo "first_job is completed"
+                 
+
+    second_job:
+        needs: first_job
+        runs-on: ubuntu-latest
+        steps:
+            - name: first step in second_job
+              run: |
+                echo "second_job executes only after execution of forst_job"
+                echo "second_job execution completed"
+    
+                
+    third_job:
+        needs: second_job
+        runs-on: ubuntu-latest
+        steps: 
+            - name: first step in third_job
+              run: |
+                echo "third_job executes only after eexecution  of second_job"
+                echo "third_job exection completed"
